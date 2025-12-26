@@ -1,0 +1,128 @@
+═══════════════════════════════════════════════════════════════
+  📦 PACCHETTO FUDE RAMEN ARZIGNANO - CARTA SCONTO -20%
+═══════════════════════════════════════════════════════════════
+
+🎯 COSA HAI RICEVUTO:
+
+Sito web COMPLETO e GIÀ COMPILATO per gestire carte sconto.
+Nessuna compilazione necessaria. Pronto all'uso in 10 minuti!
+
+═══════════════════════════════════════════════════════════════
+
+⚡ QUICK START (10 MINUTI):
+
+1. Prepara 2 immagini di sfondo (desktop + mobile)
+   → Leggi: COME_SCARICARE_IMMAGINI.md
+
+2. Mettile nella cartella assets/ con questi nomi:
+   - background-desktop.png
+   - background-mobile.png
+
+3. Test locale: doppio click su index.html
+
+4. Carica online:
+   - FACILE: Netlify.com (trascina cartella)
+   - TRADIZIONALE: Tuo server (leggi DEPLOYMENT_GUIDE.md)
+
+5. ✅ Sito online!
+
+═══════════════════════════════════════════════════════════════
+
+📚 QUALI FILE LEGGERE:
+
+👤 NON SEI TECNICO?
+   → INIZIA_QUI.md
+   → PACCHETTO_COMPLETO.md
+   → DEPLOYMENT_GUIDE.md (sezione Netlify)
+
+💻 SEI UNO SVILUPPATORE?
+   → README.md
+   → DEPLOYMENT_GUIDE.md (scegli il tuo server)
+   → CHECKLIST_CONSEGNA.md
+
+🎨 SEI DESIGNER/MARKETER?
+   → INIZIA_QUI.md
+   → IMMAGINI_SETUP.md
+   → COME_SCARICARE_IMMAGINI.md
+
+═══════════════════════════════════════════════════════════════
+
+✨ COSA FA IL SITO:
+
+1. Cliente visita il sito
+2. Inserisce email e telefono
+3. Accetta privacy policy
+4. Riceve codice sconto: FUDE666
+5. Usa il codice al ristorante per -20%
+
+Valido fino: 15 gennaio 2026
+Dove: Fude Ramen Arzignano
+
+═══════════════════════════════════════════════════════════════
+
+📋 CONTENUTO PACCHETTO:
+
+FILE PRINCIPALE:
+- index.html              → Sito completo (già compilato)
+
+IMMAGINI DA AGGIUNGERE:
+- assets/background-desktop.png    → Da aggiungere
+- assets/background-mobile.png     → Da aggiungere
+
+GUIDE:
+- INIZIA_QUI.md                    → Prima guida da leggere
+- PACCHETTO_COMPLETO.md            → Panoramica generale
+- DEPLOYMENT_GUIDE.md              → Come caricare online
+- README.md                        → Documentazione tecnica
+- IMMAGINI_SETUP.md                → Setup immagini
+- COME_SCARICARE_IMMAGINI.md       → Scaricare da Figma
+- CHECKLIST_CONSEGNA.md            → Verifica pre-deploy
+
+═══════════════════════════════════════════════════════════════
+
+🎯 CARATTERISTICHE:
+
+✅ Già compilato (zero configurazione)
+✅ Un solo file HTML (nessuna dipendenza)
+✅ Responsive (desktop + mobile)
+✅ GDPR compliant (privacy + marketing)
+✅ 5 pagine complete
+✅ Nessun database richiesto (opzionale)
+✅ Funziona su qualsiasi server
+✅ Hosting gratis disponibile (Netlify)
+
+═══════════════════════════════════════════════════════════════
+
+📞 INFO RISTORANTE (nel sito):
+
+Nome: Fude Ramen Arzignano
+Indirizzo: Viale delle Fontanelle 145, Arzignano
+Telefono: 333 973 9013
+Email: info.fuderamen@gmail.com
+Orari: 12:00-14:30 | 18:00-23:00
+
+═══════════════════════════════════════════════════════════════
+
+🆘 SERVE AIUTO?
+
+1. Leggi le guide (risolvono 99% problemi)
+2. Cerca "Troubleshooting" in ogni guida
+3. Controlla PACCHETTO_COMPLETO.md - FAQ
+4. Apri console browser (F12) per errori
+
+═══════════════════════════════════════════════════════════════
+
+🚀 INIZIA ADESSO:
+
+1. Apri: INIZIA_QUI.md
+2. Scegli il tuo percorso
+3. Segui le istruzioni
+4. 🎉 Sito online in 10 minuti!
+
+═══════════════════════════════════════════════════════════════
+
+© 2025 Fude Ramen Arzignano
+Versione: 1.0.0
+Data: Dicembre 2025
+
+═══════════════════════════════════════════════════════════════

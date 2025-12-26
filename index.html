@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Fude Ramen Arzignano - Carta Sconto -20%</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+                line-height: 1.5;
+                color: #333;
+                min-height: 100vh;
+                position: relative;
+                overflow-x: hidden;
+            }
+
+            /* Background */
+            .background {
+                position: fixed;
+                inset: 0;
+                z-index: 0;
+            }
+
+            .bg-desktop {
+                display: none;
+                position: absolute;
+                inset: 0;
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-image: url("assets/desktop_background.png");
+            }
+
+            .bg-mobile {
+                display: block;
+                position: absolute;
+                inset: 0;
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-image: url("assets/mobile_background.png");
+            }
+
+            .bg-overlay {
+                position: absolute;
+                inset: 0;
+                background-color: rgba(0, 0, 0, 0.3);
+            }
+
+            @media (min-width: 768px) {
+                .bg-desktop {
+                    display: block;
+                }
+                .bg-mobile {
+                    display: none;
+                }
+            }
+
+            /* Content */
+            .content {
+                position: relative;
+                z-index: 10;
+            }
+
+            .page {
+                display: none;
+                min-height: 100vh;
+                padding: 1rem;
+            }
+
+            .page.active {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .container {
+                width: 100%;
+                max-width: 42rem;
+                margin: 0 auto;
+            }
+
+            .container-wide {
+                width: 100%;
+                max-width: 56rem;
+                margin: 0 auto;
+            }
+
+            /* Typography */
+            h1 {
+                font-size: 3rem;
+                text-align: center;
+                color: white;
+                margin-bottom: 1rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+                text-align: center;
+                color: white;
+                margin-bottom: 0.5rem;
+            }
+
+            h3 {
+                font-size: 1.25rem;
+                color: #ffb84d;
+            }
+
+            @media (min-width: 768px) {
+                h1 {
+                    font-size: 3.75rem;
+                }
+                h2 {
+                    font-size: 1.875rem;
+                }
+            }
+
+            .gradient-text {
+                background: linear-gradient(to right, #f87171, #ffffff, #fb923c);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+
+            /* Cards */
+            .card {
+                background: linear-gradient(to bottom, rgba(127, 29, 29, 0.8), rgba(69, 26, 3, 0.8));
+                border-radius: 1.5rem;
+                padding: 1.5rem;
+                margin-bottom: 1.5rem;
+                backdrop-filter: blur(4px);
+                border: 1px solid rgba(185, 28, 28, 0.5);
+            }
+
+            @media (min-width: 768px) {
+                .card {
+                    padding: 2rem;
+                }
+            }
+
+            .card-alt {
+                background: linear-gradient(to bottom, rgba(153, 27, 27, 0.8), rgba(127, 29, 29, 0.8));
+            }
+
+            .card-alt2 {
+                background: linear-gradient(to bottom, rgba(127, 29, 29, 0.8), rgba(69, 10, 10, 0.8));
+            }
+
+            /* Warning Box */
+            .warning-box {
+                background: linear-gradient(to right, rgba(113, 63, 18, 0.8), rgba(127, 29, 29, 0.8));
+                border-radius: 0.75rem;
+                padding: 1rem;
+                border: 1px solid rgba(202, 138, 4, 0.3);
+                margin-bottom: 1.5rem;
+                display: flex;
+                gap: 0.75rem;
+                align-items: flex-start;
+            }
+
+            .warning-icon {
+                font-size: 1.25rem;
+            }
+
+            .warning-text {
+                color: white;
+                font-size: 0.875rem;
+            }
+
+            @media (min-width: 768px) {
+                .warning-text {
+                    font-size: 1rem;
+                }
+            }
+
+            /* Forms */
+            .form-group {
+                margin-bottom: 1.5rem;
+            }
+
+            .form-label {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                color: white;
+                margin-bottom: 0.5rem;
+                font-size: 0.875rem;
+            }
+
+            @media (min-width: 768px) {
+                .form-label {
+                    font-size: 1rem;
+                }
+            }
+
+            .form-input {
+                width: 100%;
+                padding: 0.75rem 1rem;
+                background: white;
+                border: 1px solid #fca5a5;
+                border-radius: 0.5rem;
+                color: #111827;
+                font-size: 1rem;
+                outline: none;
+                transition: all 0.2s;
+            }
+
+            .form-input::placeholder {
+                color: #9ca3af;
+            }
+
+            .form-input:focus {
+                border-color: #ef4444;
+                box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.3);
+            }
+
+            /* Checkbox */
+            .checkbox-group {
+                margin-bottom: 0.75rem;
+            }
+
+            .checkbox-label {
+                display: flex;
+                gap: 0.75rem;
+                align-items: flex-start;
+                cursor: pointer;
+            }
+
+            .checkbox-label:hover .checkbox-text {
+                color: #fecaca;
+            }
+
+            .checkbox-input {
+                margin-top: 0.25rem;
+                width: 1.25rem;
+                height: 1.25rem;
+                cursor: pointer;
+                flex-shrink: 0;
+            }
+
+            .checkbox-text {
+                color: white;
+                font-size: 0.875rem;
+                transition: color 0.2s;
+            }
+
+            .checkbox-link {
+                text-decoration: underline;
+                cursor: pointer;
+                color: inherit;
+            }
+
+            .checkbox-link:hover {
+                color: #fca5a5;
+            }
+
+            /* Buttons */
+            .btn {
+                width: 100%;
+                padding: 1rem;
+                border: none;
+                border-radius: 0.75rem;
+                font-size: 1rem;
+                font-weight: 500;
+                cursor: pointer;
+                transition: all 0.2s;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5rem;
+            }
+
+            .btn-primary {
+                background: linear-gradient(to right, #dc2626, #f97316);
+                color: white;
+                box-shadow: 0 10px 15px -3px rgba(239, 68, 68, 0.5);
+            }
+
+            .btn-primary:hover {
+                background: linear-gradient(to right, #b91c1c, #ea580c);
+            }
+
+            .btn-secondary {
+                background: linear-gradient(to right, #b91c1c, #ea580c);
+                color: white;
+            }
+
+            .btn-secondary:hover {
+                background: linear-gradient(to right, #dc2626, #f97316);
+            }
+
+            /* Code Display */
+            .code-display {
+                background: linear-gradient(to right, rgba(127, 29, 29, 0.6), rgba(154, 52, 18, 0.6));
+                border-radius: 1rem;
+                padding: 2rem;
+                border: 2px solid rgba(239, 68, 68, 0.5);
+                text-align: center;
+            }
+
+            .code-text {
+                font-size: 2.25rem;
+                color: white;
+                letter-spacing: 0.1em;
+                font-weight: 700;
+            }
+
+            @media (min-width: 768px) {
+                .code-text {
+                    font-size: 3rem;
+                }
+            }
+
+            /* Lists */
+            .list {
+                list-style: none;
+                color: white;
+            }
+
+            .list li {
+                margin-bottom: 0.5rem;
+            }
+
+            .list-disc {
+                margin-left: 2rem;
+            }
+
+            .list-disc li {
+                list-style: disc;
+            }
+
+            /* Icons */
+            .icon {
+                width: 1.25rem;
+                height: 1.25rem;
+                display: inline-block;
+                vertical-align: middle;
+            }
+
+            .icon-lg {
+                width: 1.5rem;
+                height: 1.5rem;
+            }
+
+            /* Text styles */
+            .text-white {
+                color: white;
+            }
+
+            .text-white-80 {
+                color: rgba(255, 255, 255, 0.8);
+            }
+
+            .text-white-70 {
+                color: rgba(255, 255, 255, 0.7);
+            }
+
+            .text-white-50 {
+                color: rgba(255, 255, 255, 0.5);
+            }
+
+            .text-orange {
+                color: #ffb84d;
+            }
+
+            .text-orange-light {
+                color: #fcd34d;
+            }
+
+            .text-center {
+                text-align: center;
+            }
+
+            .text-sm {
+                font-size: 0.875rem;
+            }
+
+            .text-xs {
+                font-size: 0.75rem;
+            }
+
+            .text-lg {
+                font-size: 1.125rem;
+            }
+
+            .text-xl {
+                font-size: 1.25rem;
+            }
+
+            .text-2xl {
+                font-size: 1.5rem;
+            }
+
+            /* Spacing */
+            .space-y-1 > * + * {
+                margin-top: 0.25rem;
+            }
+
+            .space-y-2 > * + * {
+                margin-top: 0.5rem;
+            }
+
+            .space-y-3 > * + * {
+                margin-top: 0.75rem;
+            }
+
+            .space-y-4 > * + * {
+                margin-top: 1rem;
+            }
+
+            .space-y-6 > * + * {
+                margin-top: 1.5rem;
+            }
+
+            .space-y-8 > * + * {
+                margin-top: 2rem;
+            }
+
+            .mb-2 {
+                margin-bottom: 0.5rem;
+            }
+
+            .mb-4 {
+                margin-bottom: 1rem;
+            }
+
+            .mt-2 {
+                margin-top: 0.5rem;
+            }
+
+            .mt-3 {
+                margin-top: 0.75rem;
+            }
+
+            .pt-2 {
+                padding-top: 0.5rem;
+            }
+
+            .pt-4 {
+                padding-top: 1rem;
+            }
+
+            .ml-4 {
+                margin-left: 1rem;
+            }
+
+            /* Flexbox */
+            .flex {
+                display: flex;
+            }
+
+            .items-center {
+                align-items: center;
+            }
+
+            .items-start {
+                align-items: flex-start;
+            }
+
+            .gap-2 {
+                gap: 0.5rem;
+            }
+
+            .gap-3 {
+                gap: 0.75rem;
+            }
+
+            .gap-4 {
+                gap: 1rem;
+            }
+
+            .flex-shrink-0 {
+                flex-shrink: 0;
+            }
+
+            /* Border */
+            .border-t {
+                border-top: 1px solid rgba(185, 28, 28, 0.5);
+            }
+
+            /* Back button header */
+            .page-header {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .back-btn {
+                background: none;
+                border: none;
+                color: white;
+                cursor: pointer;
+                padding: 0.5rem;
+                transition: color 0.2s;
+            }
+
+            .back-btn:hover {
+                color: #ffb84d;
+            }
+
+            .break-all {
+                word-break: break-all;
+            }
+
+            /* Contact info */
+            .contact-item {
+                display: flex;
+                align-items: flex-start;
+                gap: 0.75rem;
+                padding-top: 0.5rem;
+            }
+
+            .contact-link {
+                color: white;
+                text-decoration: none;
+                transition: color 0.2s;
+            }
+
+            .contact-link:hover {
+                color: #ffb84d;
+            }
+
+            /* Hidden utility */
+            .hidden {
+                display: none;
+            }
+
+            /* Privacy/Marketing page styles */
+            .policy-content {
+                color: white;
+            }
+
+            .policy-content h2 {
+                color: #ffb84d;
+                margin-bottom: 0.5rem;
+                text-align: left;
+                font-size: 1.5rem;
+            }
+
+            .policy-content h3 {
+                color: #fcd34d;
+                margin-bottom: 0.5rem;
+                font-size: 1.25rem;
+            }
+
+            .policy-content p {
+                margin-bottom: 0.5rem;
+            }
+
+            .policy-content strong {
+                font-weight: 600;
+            }
+
+            @media (min-width: 768px) {
+                .policy-content h2 {
+                    font-size: 1.875rem;
+                }
+                .policy-content h3 {
+                    font-size: 1.5rem;
+                }
+            }
+        </style>
+        <script></script>
+    </head>
+    <body>
+        <!-- Background -->
+        <div class="background">
+            <div class="bg-desktop"></div>
+            <div class="bg-mobile"></div>
+            <div class="bg-overlay"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <!-- Home Page -->
+            <div id="page-home" class="page active">
+                <div class="container space-y-8">
+                    <!-- Header -->
+                    <div class="text-center space-y-4">
+                        <h1>
+                            <span class="gradient-text">-20% SCONTO</span>
+                        </h1>
+                        <h2>FUDE RAMEN ARZIGNANO</h2>
+                        <p class="text-white-80 text-sm">Offerta valida fino al 15 gennaio 2026</p>
+                    </div>
+
+                    <!-- Form Card -->
+                    <div class="card space-y-6">
+                        <!-- Warning -->
+                        <div class="warning-box">
+                            <span class="warning-icon">⚠️</span>
+                            <p class="warning-text">
+                                Per consentire al negozio di verificare la tua carta sconto, inserisci il tuo numero di telefono corretto.
+                            </p>
+                        </div>
+
+                        <!-- Form -->
+                        <form id="discount-form" class="space-y-6">
+                            <!-- Email -->
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                                        ></path>
+                                    </svg>
+                                    Indirizzo Email
+                                </label>
+                                <input type="email" id="email" class="form-input" placeholder="email@gmail.com" required />
+                            </div>
+
+                            <!-- Phone -->
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                                        ></path>
+                                    </svg>
+                                    Numero di Telefono
+                                </label>
+                                <input type="tel" id="phone" class="form-input" placeholder="+39 123 456 7890" required />
+                            </div>
+
+                            <!-- Checkboxes -->
+                            <div class="space-y-3">
+                                <div class="checkbox-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="consent1" class="checkbox-input" required />
+                                        <span class="checkbox-text">
+                                            Accetto l'<span class="checkbox-link" onclick="navigateTo('privacy')">informativa sulla privacy</span> e
+                                            il trattamento dei miei dati personali.
+                                        </span>
+                                    </label>
+                                </div>
+
+                                <div class="checkbox-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="consent2" class="checkbox-input" />
+                                        <span class="checkbox-text">
+                                            Voglio ricevere aggiornamenti, promozioni e offerte esclusive. Autorizzo il trattamento dei miei dati
+                                            personali per finalità di marketing secondo le
+                                            <span class="checkbox-link" onclick="navigateTo('marketing')">condizioni indicate</span>.
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button type="submit" class="btn btn-primary">
+                                <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"
+                                    ></path>
+                                </svg>
+                                Ricevi la tua carta sconto
+                            </button>
+                        </form>
+
+                        <!-- Footer Text -->
+                        <p class="text-center text-white-80 text-sm">Mostra la carta alla cassa per lo sconto immediato</p>
+                    </div>
+
+                    <!-- Special Discount Preview -->
+                    <div class="text-center">
+                        <h3 class="text-2xl text-white">SCONTO SPECIALE</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Success Page -->
+            <div id="page-success" class="page">
+                <div class="container space-y-6">
+                    <!-- Success Message -->
+                    <div class="card-alt">
+                        <h2 class="text-2xl text-white text-center">La Tua Carta Sconto è Pronta!</h2>
+                        <p class="text-white-80 text-center mt-2">Complimenti! La tua carta sconto è pronta per essere utilizzata.</p>
+                    </div>
+
+                    <!-- Card Code -->
+                    <div class="card space-y-6">
+                        <h3 class="text-xl text-white text-center">Il Tuo Codice Carta:</h3>
+
+                        <div class="code-display">
+                            <p class="code-text">FUDE666</p>
+                        </div>
+
+                        <div class="text-center space-y-1">
+                            <p class="text-orange text-xl">-20% CARTA SCONTO</p>
+                            <p class="text-white">FUDE RAMEN ARZIGNANO</p>
+                        </div>
+                    </div>
+
+                    <!-- Special Offers -->
+                    <div class="card space-y-4">
+                        <div class="flex items-center gap-2 text-orange">
+                            <svg class="icon-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"
+                                ></path>
+                            </svg>
+                            <h3 class="text-xl">Offerte Speciali:</h3>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-2xl text-white">🍜 Tutto al -20% Sconto</p>
+                        </div>
+                    </div>
+
+                    <!-- Card Details -->
+                    <div class="card-alt space-y-4">
+                        <div class="flex items-center gap-2 text-orange">
+                            <svg class="icon-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+                                ></path>
+                            </svg>
+                            <h3 class="text-xl">Dettagli della Carta Sconto:</h3>
+                        </div>
+                        <ul class="list text-white text-sm">
+                            <li>• Valida fino al 15 gennaio 2026</li>
+                            <li>• Solo presso il nostro ristorante ad Arzignano</li>
+                            <li>• Non cumulabile con altre promozioni</li>
+                        </ul>
+                    </div>
+
+                    <!-- How to Use -->
+                    <div class="card-alt space-y-4">
+                        <div class="flex items-center gap-2 text-orange">
+                            <svg class="icon-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                                ></path>
+                            </svg>
+                            <h3 class="text-xl">Come Utilizzare la Carta Sconto:</h3>
+                        </div>
+                        <ol class="list text-white text-sm">
+                            <li>1. Salva questa email o fai uno screenshot del codice</li>
+                            <li>2. Vieni nel nostro ristorante ad Arzignano</li>
+                            <li>3. Mostra il codice alla cassa</li>
+                            <li>4. Goditi i tuoi sconti speciali!</li>
+                        </ol>
+                    </div>
+
+                    <!-- Restaurant Info -->
+                    <div class="card space-y-4">
+                        <div class="flex items-center gap-2 text-orange">
+                            <svg class="icon-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                                ></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <h3 class="text-xl">Vieni a Trovarci!</h3>
+                        </div>
+
+                        <div class="space-y-4 text-white">
+                            <div>
+                                <p class="text-lg">FUDE RAMEN ARZIGNANO</p>
+                                <p class="text-white-80">Viale delle Fontanelle 145, Arzignano</p>
+                            </div>
+
+                            <div class="contact-item">
+                                <svg
+                                    class="icon text-orange flex-shrink-0"
+                                    style="margin-top: 0.25rem"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                                    ></path>
+                                </svg>
+                                <a href="tel:3339739013" class="contact-link">333 973 9013</a>
+                            </div>
+
+                            <div class="contact-item">
+                                <svg
+                                    class="icon text-orange flex-shrink-0"
+                                    style="margin-top: 0.25rem"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                                    ></path>
+                                </svg>
+                                <a href="mailto:info.fuderamen.sanbonifacio@gmail.com" class="contact-link break-all"
+                                    >info.fuderamen.sanbonifacio@gmail.com</a
+                                >
+                            </div>
+
+                            <div class="contact-item">
+                                <svg
+                                    class="icon text-orange flex-shrink-0"
+                                    style="margin-top: 0.25rem"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                                    ></path>
+                                </svg>
+                                <div>
+                                    <p>Orari di apertura</p>
+                                    <p class="text-white-80">12:00-14:30 | 18:00-23:00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Footer -->
+                    <div class="text-center space-y-4 pt-4">
+                        <p class="text-white-70 text-sm">Hai domande? Contattaci tramite telefono o email</p>
+                        <p class="text-white-50 text-xs">© 2025 FUDE RAMEN ARZIGNANO - Tutti i diritti riservati</p>
+                    </div>
+
+                    <!-- Back to Home Button -->
+                    <button onclick="navigateTo('home')" class="btn btn-secondary">Torna alla Home</button>
+                </div>
+            </div>
+
+            <!-- Privacy Page -->
+            <div id="page-privacy" class="page">
+                <div class="container-wide space-y-6" style="padding-top: 3rem; padding-bottom: 3rem">
+                    <!-- Header -->
+                    <div class="page-header">
+                        <button class="back-btn" onclick="navigateTo('home')">
+                            <svg class="icon-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                            </svg>
+                        </button>
+                        <h1 style="font-size: 2rem; margin: 0">Privacy Policy</h1>
+                    </div>
+
+                    <div class="card-alt2 policy-content" style="padding: 2.5rem">
+                        <div class="space-y-6">
+                            <div>
+                                <h2>Informativa sulla Privacy (GDPR)</h2>
+                                <p class="text-white-80">Ultimo aggiornamento: dicembre 2025</p>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div>
+                                    <h3>1. Titolare del Trattamento</h3>
+                                    <p>Il Titolare del trattamento dei dati è:</p>
+                                    <div class="ml-4 mt-2 space-y-1">
+                                        <p><strong>Fude Ramen Arzignano</strong></p>
+                                        <p>Indirizzo: Viale delle Fontanelle 145, Arzignano</p>
+                                        <p>Email: info.fuderamen.sanbonifacio@gmail.com</p>
+                                        <p>Tel: 333 973 9013</p>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h3>2. Dati Raccolti</h3>
+                                    <p>
+                                        Raccogliamo esclusivamente i seguenti dati personali forniti volontariamente dall'utente tramite il modulo
+                                        online:
+                                    </p>
+                                    <ul class="list-disc mt-2 space-y-1">
+                                        <li>Indirizzo email</li>
+                                        <li>Numero di telefono</li>
+                                    </ul>
+                                </div>
+
+                                <div>
+                                    <h3>3. Finalità del Trattamento</h3>
+                                    <p>I dati raccolti verranno utilizzati esclusivamente per:</p>
+                                    <ul class="list-disc mt-2 space-y-1">
+                                        <li>Invio del coupon promozionale richiesto</li>
+                                        <li>Comunicazioni relative a promozioni, offerte o aggiornamenti del ristorante</li>
+                                        <li>Marketing diretto (solo previo consenso esplicito)</li>
+                                    </ul>
+                                </div>
+
+                                <div>
+                                    <h3>4. Base Giuridica del Trattamento</h3>
+                                    <p>Ai sensi del GDPR (Reg. UE 2016/679), il trattamento si basa su:</p>
+                                    <ul class="list-disc mt-2 space-y-1">
+                                        <li>Consenso dell'interessato, espresso tramite selezione dell'apposita casella nel modulo</li>
+                                        <li>Esecuzione di misure precontrattuali, per l'invio del coupon richiesto</li>
+                                    </ul>
+                                </div>
+
+                                <div>
+                                    <h3>5. Modalità del Trattamento</h3>
+                                    <p>I dati sono trattati con strumenti elettronici e salvati su server protetti.</p>
+                                    <p class="mt-2">Adottiamo misure tecniche e organizzative adeguate per garantire:</p>
+                                    <ul class="list-disc mt-2 space-y-1">
+                                        <li>integrità</li>
+                                        <li>riservatezza</li>
+                                        <li>protezione da accessi non autorizzati</li>
+                                        <li>perdita o distruzione</li>
+                                    </ul>
+                                </div>
+
+                                <div>
+                                    <h3>6. Conservazione dei Dati</h3>
+                                    <p>I dati saranno conservati solo per il tempo necessario a:</p>
+                                    <ul class="list-disc mt-2 space-y-1">
+                                        <li>inviare il coupon</li>
+                                        <li>fornire comunicazioni promozionali (solo se l'utente ha dato il consenso)</li>
+                                    </ul>
+                                    <p class="mt-2">L'utente può in qualsiasi momento richiedere la cancellazione dei propri dati.</p>
+                                </div>
+
+                                <div>
+                                    <h3>7. Comunicazione dei Dati</h3>
+                                    <p>I dati:</p>
+                                    <ul class="list-disc mt-2 space-y-1">
+                                        <li>non saranno comunicati a terzi</li>
+                                        <li>non saranno trasferiti fuori dall'Unione Europea</li>
+                                        <li>saranno trattati esclusivamente da personale autorizzato di Fude Ramen</li>
+                                    </ul>
+                                </div>
+
+                                <div>
+                                    <h3>8. Sicurezza</h3>
+                                    <p>Adottiamo misure tecniche e organizzative adeguate per proteggere i tuoi dati personali da:</p>
+                                    <ul class="list-disc mt-2 space-y-1">
+                                        <li>accessi non autorizzati</li>
+                                        <li>perdita</li>
+                                        <li>distruzione</li>
+                                    </ul>
+                                </div>
+
+                                <div>
+                                    <h3>9. Diritti dell'Interessato</h3>
+                                    <p>Ai sensi degli artt. 15–22 del GDPR, hai il diritto di:</p>
+                                    <ul class="list-disc mt-2 space-y-1">
+                                        <li>Accedere ai tuoi dati personali</li>
+                                        <li>Richiedere la rettifica o la cancellazione dei dati</li>
+                                        <li>Limitare il trattamento</li>
+                                        <li>Opporti al trattamento</li>
+                                        <li>Richiedere la portabilità dei dati</li>
+                                        <li>Revocare il consenso in qualsiasi momento</li>
+                                        <li>Presentare reclamo all'Autorità Garante per la Protezione dei Dati Personali</li>
+                                    </ul>
+                                </div>
+
+                                <div>
+                                    <h3>10. Contatti</h3>
+                                    <p>Per esercitare i tuoi diritti o per qualsiasi informazione relativa al trattamento dei dati, contattaci a:</p>
+                                    <div class="ml-4 mt-2 space-y-1">
+                                        <p>📩 Email: info.fuderamen.sanbonifacio@gmail.com</p>
+                                        <p>📞 Tel: 333 973 9013</p>
+                                    </div>
+                                </div>
+
+                                <div class="pt-4 border-t">
+                                    <p class="text-orange-light">Ultimo aggiornamento</p>
+                                    <p>Dicembre 2025</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Back Button -->
+                    <button onclick="navigateTo('home')" class="btn btn-secondary">Torna alla Home</button>
+                </div>
+            </div>
+
+            <!-- Marketing Page -->
+            <div id="page-marketing" class="page">
+                <div class="container-wide space-y-6" style="padding-top: 3rem; padding-bottom: 3rem">
+                    <!-- Header -->
+                    <div class="page-header">
+                        <button class="back-btn" onclick="navigateTo('home')">
+                            <svg class="icon-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                            </svg>
+                        </button>
+                        <h1 style="font-size: 2rem; margin: 0">Condizioni di Marketing</h1>
+                    </div>
+
+                    <div class="card-alt2 policy-content" style="padding: 2.5rem">
+                        <div class="space-y-6">
+                            <div>
+                                <h2>Termini e condizioni per le comunicazioni commerciali</h2>
+                                <p class="text-white-80 mt-3">
+                                    Accettando le presenti condizioni di marketing, autorizzi Fude Ramen a utilizzare i tuoi dati personali (nome,
+                                    cognome, indirizzo email e numero di telefono) per le seguenti finalità commerciali e promozionali, ai sensi del
+                                    GDPR.
+                                </p>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div>
+                                    <h3>1. Invio di comunicazioni promozionali</h3>
+                                    <p>Potremo contattarti tramite:</p>
+                                    <ul class="list-disc mt-2 space-y-1">
+                                        <li>Email</li>
+                                        <li>WhatsApp</li>
+                                        <li>SMS</li>
+                                    </ul>
+                                    <p class="mt-3">per inviarti:</p>
+                                    <ul class="list-disc mt-2 space-y-1">
+                                        <li>offerte speciali e sconti riservati,</li>
+                                        <li>coupon personalizzati,</li>
+                                        <li>novità sui servizi e prodotti disponibili presso il nostro ristorante.</li>
+                                    </ul>
+                                </div>
+
+                                <div>
+                                    <h3>2. Aggiornamenti periodici</h3>
+                                    <p>Riceverai comunicazioni riguardanti:</p>
+                                    <ul class="list-disc mt-2 space-y-1">
+                                        <li>promozioni stagionali e iniziative in ristorante,</li>
+                                        <li>nuovi piatti disponibili,</li>
+                                        <li>informazioni utili per migliorare la tua esperienza come cliente.</li>
+                                    </ul>
+                                </div>
+
+                                <div>
+                                    <h3>3. Personalizzazione delle offerte</h3>
+                                    <p>I tuoi dati potranno essere utilizzati per proporti offerte rilevanti e personalizzate, basate:</p>
+                                    <ul class="list-disc mt-2 space-y-1">
+                                        <li>sui tuoi interessi,</li>
+                                        <li>sulle preferenze di acquisto,</li>
+                                        <li>sulle interazioni precedenti con i nostri servizi.</li>
+                                    </ul>
+                                </div>
+
+                                <div>
+                                    <h3>4. Revoca del consenso</h3>
+                                    <p>
+                                        Puoi revocare il consenso in qualsiasi momento, senza costi e senza pregiudicare la liceità del trattamento
+                                        precedente.
+                                    </p>
+                                    <p class="mt-3">Per revocare il consenso, scrivi a:</p>
+                                    <p class="ml-4 mt-2">📩 info.fuderamen.sanbonifacio@gmail.com</p>
+                                    <p class="mt-3">Dopo la revoca:</p>
+                                    <ul class="list-disc mt-2 space-y-1">
+                                        <li>non riceverai più comunicazioni promozionali,</li>
+                                        <li>i tuoi dati potranno essere conservati solo per obblighi amministrativi o legali.</li>
+                                    </ul>
+                                </div>
+
+                                <div>
+                                    <h3>5. Limitazioni e frequenza di invio</h3>
+                                    <ul class="list-disc mt-2 space-y-1">
+                                        <li>Le comunicazioni verranno inviate con frequenza moderata, proporzionata alle nostre offerte reali.</li>
+                                        <li>Non effettuiamo spam né vendiamo i tuoi dati a terzi.</li>
+                                    </ul>
+                                </div>
+
+                                <div>
+                                    <h3>6. Protezione dei dati</h3>
+                                    <p>I tuoi dati personali saranno trattati:</p>
+                                    <ul class="list-disc mt-2 space-y-1">
+                                        <li>nel rispetto del Regolamento (UE) 679/2016 (GDPR),</li>
+                                        <li>con misure tecniche e organizzative adeguate,</li>
+                                        <li>al fine di garantirne sicurezza, integrità e riservatezza,</li>
+                                        <li>da personale autorizzato di Fude Ramen.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Back Button -->
+                    <button onclick="navigateTo('home')" class="btn btn-secondary">Torna alla Home</button>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Navigation
+            function navigateTo(page) {
+                // Hide all pages
+                document.querySelectorAll(".page").forEach((p) => p.classList.remove("active"));
+
+                // Show target page
+                const targetPage = document.getElementById("page-" + page);
+                if (targetPage) {
+                    targetPage.classList.add("active");
+                    window.scrollTo(0, 0);
+                }
+            }
+
+            // Form submission
+            document.getElementById("discount-form").addEventListener("submit", function (e) {
+                e.preventDefault();
+
+                const email = document.getElementById("email").value;
+                const phone = document.getElementById("phone").value;
+                const consent1 = document.getElementById("consent1").checked;
+
+                if (email && phone && consent1) {
+                    // Here you can add code to send data to your backend
+                    console.log("Form submitted:", { email, phone, consent1 });
+                    sendRequestApi(e)
+                    // Navigate to success page
+                    navigateTo("success");
+                }
+            });
+
+            function verifica_numero_telefono(numero) {
+                const pattern = /^(?:(?:(?:\+|00)?39)[\s.-]*)?3\d{2}(?:[\s.-]*\d){7}$/;
+                return pattern.test(numero);
+            }
+
+            //Handle phone change to validate phone number format
+            document.getElementById("phone").addEventListener("blur", function (e) {
+                e.preventDefault();
+                const phone = e.target.value;
+                console.debug(phone);
+                if (!verifica_numero_telefono(phone) && phone.length > 0) {
+                    document.getElementById("phone_error")?.remove();
+                    document
+                        .getElementById("phone")
+                        .insertAdjacentHTML(
+                            "afterend",
+                            '<p id="phone_error" style="color:red" className="mt-1 drop-shadow-md">Formato non corretto</p>'
+                        );
+                } else {
+                    document.getElementById("phone_error")?.remove();
+                }
+            });
+
+            function sendRequestApi(e) {
+                const data = {
+                    email: document.querySelector("#email").value,
+                    phone_number: document.querySelector("#phone").value,
+                };
+                console.log(data);
+                const emailManipulater = async (userData) => {
+                    let res = await fetch("https://buoxijwqjrsbhkflenpm.supabase.co/functions/v1/rapid-responder", {
+                        method: "POST",
+                        headers: {
+                            Authorization: "Bearer sb_publishable_w_8yjuF0eQ3RnsF0RzjthA_MR00VQb0",
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({ to: userData.email, phone_number: userData.phone }),
+                    });
+                    await res;
+                    console.log(res);
+                    const responseData = await res.json(); //solo il corpo dati
+                    console.log(userData); // { message: "Hello Fetch!" }
+                    //Inserire il fetch per call api di supabase per l'invio di email e modifica dell'email
+                    console.log(responseData);
+                    return res; //compreso header
+                };
+                emailManipulater(data).then(function (response) {
+                    if (response.status == 200) {
+                        fbq("track", "Lead");
+                    }
+                });
+            }
+        </script>
+    </body>
+</html>
