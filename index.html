@@ -568,9 +568,32 @@
                 }
             }
         </style>
-        <script></script>
+        <!-- Meta Pixel Code -->
+        <script>
+            !(function (f, b, e, v, n, t, s) {
+                if (f.fbq) return;
+                n = f.fbq = function () {
+                    n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+                };
+                if (!f._fbq) f._fbq = n;
+                n.push = n;
+                n.loaded = !0;
+                n.version = "2.0";
+                n.queue = [];
+                t = b.createElement(e);
+                t.async = !0;
+                t.src = v;
+                s = b.getElementsByTagName(e)[0];
+                s.parentNode.insertBefore(t, s);
+            })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+            fbq("init", "896567602798388");
+            fbq("track", "PageView");
+        </script>
     </head>
     <body>
+        <noscript>
+            <img height="1" width="1" style="display: none" src="https://www.facebook.com/tr?id=896567602798388&ev=PageView&noscript=1" />
+        </noscript>
         <!-- Background -->
         <div class="background">
             <div class="bg-desktop"></div>
@@ -650,7 +673,7 @@
 
                                 <div class="checkbox-group">
                                     <label class="checkbox-label">
-                                        <input type="checkbox" id="consent2" class="checkbox-input" />
+                                        <input type="checkbox" id="consent2" class="checkbox-input" required />
                                         <span class="checkbox-text">
                                             Voglio ricevere aggiornamenti, promozioni e offerte esclusive. Autorizzo il trattamento dei miei dati
                                             personali per finalità di marketing secondo le
@@ -727,7 +750,7 @@
                     </div>
 
                     <!-- Card Details -->
-                    <div class="card-alt space-y-4">
+                    <div class="card space-y-4">
                         <div class="flex items-center gap-2 text-orange">
                             <svg class="icon-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path
@@ -747,7 +770,7 @@
                     </div>
 
                     <!-- How to Use -->
-                    <div class="card-alt space-y-4">
+                    <div class="card space-y-4">
                         <div class="flex items-center gap-2 text-orange">
                             <svg class="icon-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path
@@ -1126,11 +1149,12 @@
                 const email = document.getElementById("email").value;
                 const phone = document.getElementById("phone").value;
                 const consent1 = document.getElementById("consent1").checked;
+                const consent2 = document.getElementById("consent2").checked;
 
-                if (email && phone && consent1) {
+                if (email && phone && consent1 && consent2) {
                     // Here you can add code to send data to your backend
-                    console.log("Form submitted:", { email, phone, consent1 });
-                    sendRequestApi(e)
+                    console.debug("Form submitted:", { email, phone, consent1, consent2 });
+                    sendRequestApi(e);
                     // Navigate to success page
                     navigateTo("success");
                 }
@@ -1164,22 +1188,22 @@
                     email: document.querySelector("#email").value,
                     phone_number: document.querySelector("#phone").value,
                 };
-                console.log(data);
+                console.debug(data);
                 const emailManipulater = async (userData) => {
-                    let res = await fetch("https://buoxijwqjrsbhkflenpm.supabase.co/functions/v1/rapid-responder", {
+                    let res = await fetch("https://buoxijwqjrsbhkflenpm.supabase.co/functions/v1/hyper-endpoint", {
                         method: "POST",
                         headers: {
                             Authorization: "Bearer sb_publishable_w_8yjuF0eQ3RnsF0RzjthA_MR00VQb0",
                             "Content-Type": "application/json",
                         },
-                        body: JSON.stringify({ to: userData.email, phone_number: userData.phone }),
+                        body: JSON.stringify({ to: userData.email, phone_number: userData.phone_number }),
                     });
                     await res;
-                    console.log(res);
+                    console.debug("Response: ", res);
                     const responseData = await res.json(); //solo il corpo dati
-                    console.log(userData); // { message: "Hello Fetch!" }
+                    console.debug("Sending data: ", userData); // { message: "Hello Fetch!" }
                     //Inserire il fetch per call api di supabase per l'invio di email e modifica dell'email
-                    console.log(responseData);
+                    console.debug("Response data:", responseData);
                     return res; //compreso header
                 };
                 emailManipulater(data).then(function (response) {
